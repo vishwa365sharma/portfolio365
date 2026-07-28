@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Frontend Architect & UI/UX Designer Portfolio</title>
+    <meta name="description" content="A modern portfolio showcasing cutting-edge frontend development, UI/UX design, 3D interactions, and engaging web experiences.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✨%3C/text%3E%3C/svg%3E">
+
+    <!-- FOUC prevention for theme -->
+    <script>
+        (function () {
+            const saved = (() => { try { return localStorage.getItem('theme'); } catch(e) { return null; } })();
+            const sys   = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', saved || (sys ? 'dark' : 'light'));
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Playfair+Display:wght@400..700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles & Theme variables */
+        :root {
+            --bg-primary: #09090b; /* Zinc-950 */
+            --bg-secondary: #111113; /* Zinc-900 slightly darker */
+            --bg-card: #18181b; /* Zinc-800 */
+            --bg-elevated: #1f1f23; /* Zinc-700 */
+            --text-primary: #fafafa; /* Zinc-50 */
+            --text-secondary: #a1a1aa; /* Zinc-400 */
+            --text-tertiary: #71717a; /* Zinc-500 */
+            --accent: #6366f1; /* Indigo-500 */
+            --accent-hover: #4f46e5; /* Indigo-600 */
+            --accent-glow: rgba(99,102,241,0.25);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.16);
+            --glass: rgba(255,255,255,0.04);
+            --shadow: 0 8px 32px rgba(0,0,0,0.5);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 20px;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+            --header-height: 72px;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc; /* Slate-50 */
+            --bg-secondary: #f1f5f9; /* Slate-100 */
+            --bg-card: #ffffff;
+            --bg-elevated: #ffffff;
+            --text-primary: #0f172a; /* Slate-900 */
+            --text-secondary: #475569; /* Slate-600 */
+            --text-tertiary: #94a3b8; /* Slate-400 */
+            --accent: #6366f1; /* Indigo-500 */
+            --accent-hover: #4f46e5; /* Indigo-600 */
+            --accent-glow: rgba(99,102,241,0.15);
+            --border: rgba(0,0,0,0.08);
+            --border-hover: rgba(0,0,0,0.16);
+            --glass: rgba(0,0,0,0.02);
+            --shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        /* Global reset & base styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h3 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        p { font-size: clamp(1rem, 2vw, 1.125rem); color: var(--text-secondary); }
+        small, .text-sm { font-size: 0.875rem; color: var(--text-tertiary); }
+        .label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background-color: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 5vw, 2rem);
+            width: 100%;
+        }
+
+        .section-padding {
+            padding-top: clamp(6rem, 15vw, 10rem);
+            padding-bottom: clamp(6rem, 15vw, 10rem);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback */
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-lg);
+            background-color: var(--accent);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-height: 44px; /* Touch target */
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .btn .icon {
+            margin-left: 0.5rem;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            background-color: var(--glass);
+            box-shadow: none;
+            color: var(--text-primary);
+        }
+
+        /* Glassmorphism */
+        .glassmorphic {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            filter: blur(4px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        filter 0.7s ease;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        .reveal[data-delay="100"] { transition-delay: 0.1s; }
+        .reveal[data-delay="200"] { transition-delay: 0.2s; }
+        .reveal[data-delay="300"] { transition-delay: 0.3s; }
+        .reveal[data-delay="400"] { transition-delay: 0.4s; }
+        .reveal[data-delay="500"] { transition-delay: 0.5s; }
+        .reveal[data-delay="600"] { transition-delay: 0.6s; }
+        /* Fallback for animation-timeline if not supported */
+        @supports (animation-timeline: view()) {
+            .reveal {
+                animation: reveal-in linear both;
+                animation-timeline: view();
+                animation-range: entry 0% cover 30%;
+                opacity: 0; /* Override initial opacity for CSS animation */
+                transform: translateY(24px); /* Override initial transform */
+                filter: blur(4px); /* Override initial filter */
+                transition: none; /* Disable JS-driven transition */
+            }
+            @keyframes reveal-in {
+                from { opacity: 0; transform: translateY(24px); filter: blur(4px); }
+                to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+            }
+        }
+
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            padding: 0 clamp(1rem, 5vw, 2rem);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            background: transparent; /* Default transparent */
+        }
+        .header.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+        }
+        .theme-toggle:hover {
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--text-primary);
+            z-index: 101;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Nav Drawer */
+        .mobile-nav-drawer {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Hidden off-screen */
+            width: 280px;
+            height: 100%;
+            background-color: var(--bg-card);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: left 0.3s cubic-bezier(0.16,1,0.3,1);
+            z-index: 300;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            border-right: 1px solid var(--border);
+        }
+        .mobile-nav-drawer.open {
+            left: 0;
+        }
+        .mobile-nav-drawer .nav-link {
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            width: 100%;
+            display: block;
+        }
+        .mobile-nav-drawer .nav-link::after {
+            height: 1px;
+            bottom: 0;
+        }
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-nav-close:hover {
+            color: var(--text-primary);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .mobile-nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: var(--header-height); /* Account for sticky header */
+            scroll-margin-top: var(--header-height);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            aria-hidden: "true";
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0 clamp(1rem, 5vw, 2rem);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Hero orbs (decorative) */
+        .hero-orb {
+            position: absolute;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: orb-drift 20s infinite alternate ease-in-out;
+            pointer-events: none;
+            aria-hidden: "true";
+        }
+        .orb-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
+        .orb-2 { width: 400px; height: 400px; bottom: 15%; right: 15%; animation-delay: 5s; }
+        .orb-3 { width: 250px; height: 250px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 10s; }
+
+        @keyframes orb-drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 80px) scale(1.1); }
+        }
+
+        /* About Section */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+            scroll-margin-top: var(--header-height);
+        }
+        .about-image-wrapper {
+            position: relative;
+            padding-bottom: 60%; /* Aspect ratio */
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+        .about-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+        .about-content h2 {
+            margin-bottom: 1.5rem;
+        }
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Career Section */
+        .career-section {
+            scroll-margin-top: var(--header-height);
+        }
+        .career-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .career-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .career-tab-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+            min-height: 44px;
+        }
+        .career-tab-btn:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+        .career-tab-btn.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .career-tab-content {
+            display: none;
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+        }
+        .career-tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .job-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .company-name {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .job-duration {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1.5rem;
+        }
+        .job-responsibilities {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+        .job-responsibilities li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .job-responsibilities li .icon {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        /* Projects & Achievements Grid */
+        .projects-section, .achievements-section {
+            scroll-margin-top: var(--header-height);
+        }
+        .projects-section h2, .achievements-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px; /* For CSS 3D tilt */
+            transition: box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
+        }
+        .card:hover {
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+        .card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            padding-bottom: 60%; /* 16:9 aspect ratio */
+            overflow: hidden;
+        }
+        .card-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(0.15); /* Subtle grayscale */
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .card:hover .card-image {
+            transform: scale(1.06);
+            filter: grayscale(0);
+        }
+        .card-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover .card-image-overlay {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .card-tag {
+            background-color: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-family: var(--font-mono);
+        }
+
+        /* Orb Clicker Game */
+        .game-card {
+            grid-column: span 2; /* Span two columns on desktop */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            position: relative;
+            overflow: hidden;
+        }
+        .game-card h3 {
+            margin-bottom: 1rem;
+        }
+        .game-container {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-hover);
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+        #click-orb {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            cursor: pointer;
+            transition: transform 0.1s linear, background-color 0.1s ease-out;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        #click-orb:active {
+            background-color: #a855f7; /* Purple on click */
+            transform: scale(0.9);
+        }
+        .game-controls {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        #game-score {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            scroll-margin-top: var(--header-height);
+        }
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        .contact-form {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .form-group label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: absolute;
+            top: 14px;
+            left: 16px;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            background-color: var(--bg-card); /* To mask background when floating */
+            padding: 0 0.25rem;
+        }
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:focus + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            min-height: 44px; /* Touch target */
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+            background-color: var(--bg-card);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: transparent; /* Hide placeholder so label can float */
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+        }
+        .contact-item .icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .contact-item a:hover {
+            color: var(--text-primary);
+        }
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem clamp(1rem, 5vw, 2rem);
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+        .footer p {
+            color: var(--text-tertiary);
+        }
+
+        /* Prefers reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                filter: none !important;
+                transform: none !important;
+            }
+            .hero-orb { display: none; } /* Hide moving orbs */
+        }
+
+
+        /* Responsive Design */
+        /* Tablet */
+        @media (min-width: 768px) {
+            .hamburger-menu {
+                display: none;
+            }
+            .nav-links {
+                display: flex;
+            }
+            .about-section {
+                grid-template-columns: 1fr 1.5fr;
+            }
+            .contact-content {
+                grid-template-columns: 1.5fr 1fr;
+            }
+            .game-card {
+                grid-column: span 1; /* Reset span for tablet, if needed. Or keep 2 for larger card */
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+            .hamburger-menu {
+                display: none;
+            }
+            .about-section {
+                grid-template-columns: 1fr 1.5fr;
+                gap: 6rem;
+            }
+            .contact-content {
+                grid-template-columns: 1.5fr 1fr;
+                gap: 5rem;
+            }
+            .game-card {
+                grid-column: span 2; /* Span two columns on desktop */
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0; /* Remove horizontal padding when max-width is reached */
+            }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger-menu {
+                display: block;
+            }
+            .hero-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+            .about-content {
+                order: 2; /* Text below image on mobile */
+            }
+            .about-image-wrapper {
+                order: 1;
+            }
+            .game-card {
+                grid-column: span 1; /* Single column on mobile */
+            }
+        }
+
+        /* Sticky nav top padding */
+        main {
+            padding-top: var(--header-height);
+        }
+        section:first-of-type {
+            padding-top: 0; /* Hero section handles its own padding */
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 9999; background: var(--accent); color: var(--text-primary); padding: 8px; border-radius: 4px;">Skip to main content</a>
+
+    <header class="header" id="site-header">
+        <div class="header-content">
+            <a href="#" class="logo">Portfolio</a>
+            <nav class="nav-links" aria-label="Main Navigation">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#career" class="nav-link">Career</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                <span id="themeIcon">🌙</span>
+            </button>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Open main menu">
+                <iconify-icon icon="lucide:menu" class="icon"></iconify-icon>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-header">
+            <a href="#" class="logo">Portfolio</a>
+            <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close main menu">
+                <iconify-icon icon="lucide:x" class="icon"></iconify-icon>
+            </button>
+        </div>
+        <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+            <a href="#hero" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#career" class="nav-link">Career</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#achievements" class="nav-link">Achievements</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <canvas id="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-orb orb-1" aria-hidden="true"></div>
+            <div class="hero-orb orb-2" aria-hidden="true"></div>
+            <div class="hero-orb orb-3" aria-hidden="true"></div>
+            <div class="hero-content reveal">
+                <h1>Hi, I'm <span class="gradient-text">Vishwa Sharma</span></h1>
+                <p></p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn magnetic-btn">View My Work <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+                    <a href="#contact" class="btn btn-secondary magnetic-btn">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section container section-padding">
+            <div class="about-image-wrapper reveal">
+                <img src="https://picsum.photos/seed/portrait-developer-dark/800/600" alt="A professional portrait of Alex Johnson, a frontend architect" class="about-image" loading="lazy" decoding="async">
+            </div>
+            <div class="about-content reveal" data-delay="200">
+                <span class="label">Who I Am</span>
+                <h2>Bringing ideas to life at the intersection of design & code.</h2>
+                <p>With a decade of experience in frontend development and UI/UX design, I thrive on building elegant, performant, and accessible web applications. My passion lies in creating interfaces that are not just functional, but truly delightful and intuitive.</p>
+                <p>I believe in a holistic approach to product development, from initial concept and wireframing to pixel-perfect implementation and post-launch optimization. I'm always exploring new technologies, especially in the realm of WebGL and interactive 3D, to push the boundaries of what's possible on the web.</p>
+                <a href="#contact" class="btn btn-secondary" style="margin-top: 1.5rem;">Let's Connect</a>
+            </div>
+        </section>
+
+        <!-- Career Section -->
+        <section id="career" class="career-section container section-padding">
+            <div class="reveal">
+                <span class="label">My Journey</span>
+                <h2>Where I've Built & Grown</h2>
+            </div>
+            <div class="career-tabs reveal" data-delay="200">
+                <button class="career-tab-btn active" data-tab="companyA">Innovatech Solutions</button>
+                <button class="career-tab-btn" data-tab="companyB">Creative Digital Agency</button>
+                <button class="career-tab-btn" data-tab="companyC">Startup X</button>
+            </div>
+
+            <div id="companyA" class="career-tab-content active reveal" data-delay="300">
+                <p class="job-duration">Jan 2020 - Present</p>
+                <h3 class="job-title">Senior Frontend Architect</h3>
+                <p class="company-name">Innovatech Solutions</p>
+                <ul class="job-responsibilities">
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Led architectural design and implementation of scalable frontend systems for enterprise SaaS products.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Mentored a team of 8 developers, fostering best practices in React, TypeScript, and GraphQL.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Pioneered integration of WebGL for data visualization, improving user engagement by 25%.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Conducted performance audits, reducing initial load times by 40% across key applications.</li>
+                </ul>
+            </div>
+            <div id="companyB" class="career-tab-content reveal" data-delay="300">
+                <p class="job-duration">Jul 2015 - Dec 2019</p>
+                <h3 class="job-title">Lead UI/UX Developer</h3>
+                <p class="company-name">Creative Digital Agency</p>
+                <ul class="job-responsibilities">
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Managed end-to-end development of client websites and web applications, from concept to deployment.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Collaborated with design teams to translate wireframes and mockups into responsive, interactive UIs.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Implemented A/B testing strategies, leading to significant improvements in conversion rates for e-commerce clients.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Introduced modern animation libraries and accessibility standards into project workflows.</li>
+                </ul>
+            </div>
+            <div id="companyC" class="career-tab-content reveal" data-delay="300">
+                <p class="job-duration">Aug 2013 - Jun 2015</p>
+                <h3 class="job-title">Junior Frontend Developer</h3>
+                <p class="company-name">Startup X</p>
+                <ul class="job-responsibilities">
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Developed core UI components using HTML, CSS, and jQuery for an early-stage social platform.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Assisted in optimizing website performance and ensuring cross-browser compatibility.</li>
+                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Participated in daily stand-ups and sprint planning, contributing to agile development cycles.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section container section-padding">
+            <div class="reveal">
+                <span class="label">My Creations</span>
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="grid-3-col" style="margin-top: 3rem;">
+                <article class="card reveal" data-delay="100">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/data-viz-dashboard/800/500" alt="Screenshot of a complex data visualization dashboard" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Quantum Analytics Dashboard</h3>
+                            <p>An interactive data visualization platform built with React, Three.js, and D3.js, offering real-time insights with dynamic 3D charts.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">React</span>
+                                <span class="card-tag">Three.js</span>
+                                <span class="card-tag">D3.js</span>
+                                <span class="card-tag">GraphQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="200">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/ecommerce-fashion/800/500" alt="Screenshot of a minimalist fashion e-commerce website" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Aura Fashion E-commerce</h3>
+                            <p>A high-performance e-commerce experience featuring smooth transitions, product 3D previews, and a personalized shopping journey.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Next.js</span>
+                                <span class="card-tag">Tailwind CSS</span>
+                                <span class="card-tag">WebGPU</span>
+                                <span class="card-tag">Stripe</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="300">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/design-portfolio-website/800/500" alt="Screenshot of a creative agency's portfolio website" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Zenith Studio Portfolio</h3>
+                            <p>An award-winning agency portfolio site with custom WebGL animations, fluid layouts, and a unique scroll-driven narrative.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Vanilla JS</span>
+                                <span class="card-tag">GSAP</span>
+                                <span class="card-tag">SCSS</span>
+                                <span class="card-tag">Framer Motion</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="400">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/saas-landing-page/800/500" alt="Screenshot of a modern SaaS landing page" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Synthetix AI Platform</h3>
+                            <p>Designed and developed the frontend for an AI-powered content generation platform, focusing on intuitive UX and responsive design.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Vue.js</span>
+                                <span class="card-tag">Nuxt.js</span>
+                                <span class="card-tag">TypeScript</span>
+                                <span class="card-tag">API Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="500">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/mobile-app-ui/800/500" alt="Screenshot of a sleek mobile banking app UI" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>FinFlow Mobile App UI</h3>
+                            <p>Crafted the complete UI/UX for a personal finance mobile application, emphasizing clarity, security, and ease of use.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">React Native</span>
+                                <span class="card-tag">Figma</span>
+                                <span class="card-tag">UX Research</span>
+                                <span class="card-tag">Animations</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="600">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/medical-research-platform/800/500" alt="Screenshot of a medical research collaboration platform" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>BioConnect Research Portal</h3>
+                            <p>Developed a secure portal for scientific collaboration, integrating complex data structures and compliance-driven UI patterns.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Angular</span>
+                                <span class="card-tag">RxJS</span>
+                                <span class="card-tag">WebSockets</span>
+                                <span class="card-tag">Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="achievements-section container section-padding">
+            <div class="reveal">
+                <span class="label">Recognition & Fun</span>
+                <h2>Milestones & Interactive Moments</h2>
+            </div>
+            <div class="grid-3-col" style="margin-top: 3rem;">
+                <article class="card reveal" data-delay="100">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/award-trophy/800/500" alt="Golden award trophy on a pedestal" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Webby Award Honoree</h3>
+                            <p>Recognized for outstanding visual design and user experience on the "Zenith Studio Portfolio" project (2023).</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Design</span>
+                                <span class="card-tag">UX</span>
+                                <span class="card-tag">Innovation</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="200">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/tech-conference-speaker/800/500" alt="Person speaking at a tech conference" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Keynote Speaker - Frontend Summit</h3>
+                            <p>Presented on "The Future of 3D Web: WebGPU & Beyond" at the annual Frontend Summit (2022).</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Public Speaking</span>
+                                <span class="card-tag">WebGPU</span>
+                                <span class="card-tag">Education</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card reveal" data-delay="300">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/github-stars/800/500" alt="GitHub repository screenshot with many stars" class="card-image" loading="lazy" decoding="async">
+                            <div class="card-image-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Open Source Contributor</h3>
+                            <p>Maintainer of 'react-three-fiber-utils' with 5k+ stars, simplifying 3D development for the React community.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Open Source</span>
+                                <span class="card-tag">Community</span>
+                                <span class="card-tag">React</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="game-card reveal" data-delay="400">
+                    <h3>Click the Orb Game!</h3>
+                    <p class="text-secondary">Test your reflexes. Click the moving orb as many times as you can!</p>
+                    <p id="game-score">Score: 0</p>
+                    <div class="game-container">
+                        <div id="click-orb"></div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="start-game-btn" class="btn">Start Game</button>
+                        <button id="reset-game-btn" class="btn btn-secondary">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section container section-padding">
+            <div class="reveal">
+                <span class="label">Connect With Me</span>
+                <h2>Let's Build Something Amazing Together</h2>
+            </div>
+            <div class="contact-content" style="margin-top: 3rem;">
+                <form class="contact-form reveal" data-delay="100">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn magnetic-btn">Send Message <iconify-icon icon="lucide:send"></iconify-icon></button>
+                </form>
+                <div class="contact-info reveal" data-delay="200">
+                    <h3>Reach Out Directly</h3>
+                    <div class="contact-item">
+                        <iconify-icon icon="lucide:mail" class="icon"></iconify-icon>
+                        <a href="mailto:vishwa365sharma@gmail.com">vishwa365sharma@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <iconify-icon icon="lucide:phone" class="icon"></iconify-icon>
+                        <a href="tel:+919427288949">+91 9427288949</a>
+                    </div>
+                    <div class="contact-item">
+                        <iconify-icon icon="lucide:map-pin" class="icon"></iconify-icon>
+                        <span>Panipat, Haryana, India</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/vishwa-sharma-879538373/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn profile">
+                            <iconify-icon icon="lucide:linkedin"></iconify-icon>
+                        </a>
+                        <a href="https://github.com/vishwa365sharma" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub profile">
+                            <iconify-icon icon="lucide:github"></iconify-icon>
+                        </a>
+                        <a href="https://twitter.com/alexjohnson" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter profile">
+                            <iconify-icon icon="lucide:twitter"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Alex Johnson. All rights reserved.</p>
+    </footer>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- Iconify Icon Web Component for dynamic icons -->
+    <script src="https://code.iconify.design/iconify-icon/3.0.2/iconify-icon.min.js"></script>
+    <!-- Three.js CDN -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.185.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.185.0/examples/jsm/"
+      }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from "three";
+        import { WebGPURenderer } from 'three/addons/renderers/WebGPURenderer.js';
+        import { WebGLRenderer } from 'three';
+
+        // --- Theme Toggle Logic (provided) ---
+        const html = document.documentElement;
+        const savedTheme = (() => { try { return localStorage.getItem('theme'); } catch(e) { return null; } })();
+        if (savedTheme === 'light') html.setAttribute('data-theme', 'light');
+        function toggleTheme() {
+            const isLight = html.getAttribute('data-theme') === 'light';
+            html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+            try { localStorage.setItem('theme', isLight ? 'dark' : 'light'); } catch(e) {}
+            const icon = document.getElementById('themeIcon');
+            if (icon) icon.textContent = isLight ? '🌙' : '☀️';
+            // Trigger theme update for Three.js
+            document.dispatchEvent(new CustomEvent('themeChange'));
+        }
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        // Set initial icon
+        document.addEventListener('DOMContentLoaded', () => {
+            const icon = document.getElementById('themeIcon');
+            if (icon) icon.textContent = html.getAttribute('data-theme') === 'light' ? '☀️' : '🌙';
+        });
+
+        // --- Mobile Navigation Logic ---
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+        const mobileNavClose = document.getElementById('mobile-nav-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-drawer .nav-link');
+
+        function openMobileNav() {
+            mobileNavDrawer.classList.add('open');
+            mobileNavOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileNav() {
+            mobileNavDrawer.classList.remove('open');
+            mobileNavOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        hamburgerMenu.addEventListener('click', openMobileNav);
+        mobileNavClose.addEventListener('click', closeMobileNav);
+        mobileNavOverlay.addEventListener('click', closeMobileNav);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+
+        // --- Sticky Header Logic ---
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }, { passive: true });
+
+        // --- Active Nav Link Tracking ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links .nav-link, .mobile-nav-links .nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50% 0px', // When 50% of section is visible
+            threshold: 0
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${entry.target.id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // --- Scroll Reveal Animation ---
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!CSS.supports("animation-timeline", "view()") && !reducedMotion) {
+            const revealElements = document.querySelectorAll(".reveal");
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            observer.unobserve(entry.target); // Stop observing once visible
+                        }
+                    });
+                },
+                { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+            );
+            revealElements.forEach(el => revealObserver.observe(el));
+        }
+
+        // --- Magnetic Buttons ---
+        if (!reducedMotion) {
+            document.querySelectorAll('.magnetic-btn').forEach(btn => {
+                btn.addEventListener('pointermove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - (rect.left + rect.width / 2);
+                    const y = e.clientY - (rect.top + rect.height / 2);
+                    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+                });
+                btn.addEventListener('pointerleave', () => {
+                    btn.style.transform = '';
+                });
+            });
+        }
+
+
+        // --- CSS 3D Tilt for Cards ---
+        if (!reducedMotion) {
+            document.querySelectorAll('[data-tilt]').forEach(cardInner => {
+                const card = cardInner.closest('.card');
+                if (!card) return;
+
+                const handleMouseMove = (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    cardInner.style.transform = `rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(20px)`;
+                };
+
+                const handleMouseLeave = () => {
+                    cardInner.style.transform = '';
+                };
+
+                card.addEventListener('pointermove', handleMouseMove);
+                card.addEventListener('pointerleave', handleMouseLeave);
+            });
+        }
+
+        // --- Career Tabs Logic ---
+        const tabButtons = document.querySelectorAll('.career-tab-btn');
+        const tabContents = document.querySelectorAll('.career-tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                const targetTabId = button.dataset.tab;
+                document.getElementById(targetTabId).classList.add('active');
+            });
+        });
+
+        // --- Click the Orb Game Logic ---
+        const clickOrb = document.getElementById('click-orb');
+        const startGameBtn = document.getElementById('start-game-btn');
+        const resetGameBtn = document.getElementById('reset-game-btn');
+        const gameScoreDisplay = document.getElementById('game-score');
+        const gameContainer = document.querySelector('.game-container');
+
+        let score = 0;
+        let gameRunning = false;
+        let orbMoveInterval;
+
+        function updateScore(value) {
+            score += value;
+            gameScoreDisplay.textContent = `Score: ${score}`;
+        }
+
+        function moveOrb() {
+            if (!gameRunning) return;
+            const containerRect = gameContainer.getBoundingClientRect();
+            const orbRect = clickOrb.getBoundingClientRect();
+
+            const maxX = containerRect.width - orbRect.width;
+            const maxY = containerRect.height - orbRect.height;
+
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            clickOrb.style.transform = `translate(${newX}px, ${newY}px)`;
+        }
+
+        function startGame() {
+            if (gameRunning) return;
+            gameRunning = true;
+            score = 0;
+            updateScore(0);
+            clickOrb.style.display = 'block';
+            moveOrb(); // Initial position
+            orbMoveInterval = setInterval(moveOrb, reducedMotion ? 2000 : 800); // Slower on reduced motion
+            startGameBtn.disabled = true;
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            clearInterval(orbMoveInterval);
+            score = 0;
+            updateScore(0);
+            clickOrb.style.display = 'none';
+            clickOrb.style.transform = 'translate(0, 0)';
+            startGameBtn.disabled = false;
+        }
+
+        clickOrb.addEventListener('click', (e) => {
+            if (gameRunning) {
+                updateScore(1);
+                moveOrb(); // Move immediately after click
+                e.stopPropagation(); // Prevent container click event
+            }
+        });
+
+        // Allow starting with container click for initial placement
+        gameContainer.addEventListener('click', () => {
+             if (!gameRunning) startGame();
+        });
+
+
+        startGameBtn.addEventListener('click', startGame);
+        resetGameBtn.addEventListener('click', resetGame);
+
+        // Hide orb initially
+        document.addEventListener('DOMContentLoaded', () => {
+            clickOrb.style.display = 'none';
+        });
+
+        // --- Three.js Hero Background ---
+        let scene, camera, renderer, particles, particleMaterial, mouseX = 0, mouseY = 0;
+        let particleCount = 500;
+        const heroCanvas = document.getElementById('hero-canvas');
+        const heroSection = document.getElementById('hero');
+        let animationFrameId; // To store requestAnimationFrame ID
+        let isSceneActive = false; // To track if scene is in viewport
+
+        const getAccentColor = () => {
+            const style = getComputedStyle(document.documentElement);
+            return style.getPropertyValue('--accent').trim();
+        };
+
+        const initThree = async () => {
+            if (reducedMotion) {
+                console.log("Reduced motion detected, skipping Three.js initialization.");
+                heroCanvas.style.display = 'none'; // Hide canvas if no animation
+                return;
+            }
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Try WebGPURenderer first, fallback to WebGLRenderer
+            try {
+                renderer = new WebGPURenderer({ antialias: true, canvas: heroCanvas });
+                console.log("Using WebGPURenderer");
+            } catch (e) {
+                console.warn("WebGPURenderer not available, falling back to WebGLRenderer:", e);
+                renderer = new WebGLRenderer({ antialias: true, canvas: heroCanvas });
+            }
+
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0); // Transparent background
+
+            const updateParticleColor = () => {
+                const accentColor = new THREE.Color(getAccentColor());
+                if (particleMaterial) {
+                    particleMaterial.color.set(accentColor);
+                }
+            };
+
+            // Particles
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const pColor = new THREE.Color(getAccentColor());
+
+            for (let i = 0; i < particleCount; i++) {
+                // Position
+                positions[i * 3] = (Math.random() * 2 - 1) * 10;
+                positions[i * 3 + 1] = (Math.random() * 2 - 1) * 10;
+                positions[i * 3 + 2] = (Math.random() * 2 - 1) * 10;
+
+                // Color
+                colors[i * 3] = pColor.r;
+                colors[i * 3 + 1] = pColor.g;
+                colors[i * 3 + 2] = pColor.b;
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            particleMaterial = new THREE.PointsMaterial({
+                size: 0.05,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                sizeAttenuation: true
+            });
+            particles = new THREE.Points(geometry, particleMaterial);
+            scene.add(particles);
+
+            // Add ambient light for better visibility in different themes, though particles are self-illuminating
+            const ambientLight = new THREE.AmbientLight(0x404040, 2); // soft white light
+            scene.add(ambientLight);
+
+            // Mouse interaction
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            }, { passive: true });
+
+            // Handle theme changes
+            document.addEventListener('themeChange', updateParticleColor);
+
+            // Initial color set
+            updateParticleColor();
+        };
+
+        const animateThree = () => {
+            animationFrameId = requestAnimationFrame(animateThree);
+
+            if (!isSceneActive) return; // Pause rendering if not in view
+
+            // Particle animation
+            particles.rotation.x += 0.0005;
+            particles.rotation.y += 0.0008;
+
+            // Camera movement based on mouse and scroll
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+
+            // Scroll-linked effect
+            const scrollProgress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            camera.position.z = 5 + Math.sin(scrollProgress * Math.PI * 2) * 2; // Oscillate Z position
+
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        };
+
+        const onWindowResizeThree = () => {
+            if (!camera || !renderer) return;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+
+        // Intersection Observer to pause/resume Three.js animation
+        const sceneObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    isSceneActive = true;
+                    if (!animationFrameId) animateThree(); // Start animation if not running
+                } else {
+                    isSceneActive = false;
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
+
+        // Initialize and start observing
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initThree();
+            if (!reducedMotion) {
+                sceneObserver.observe(heroSection);
+                window.addEventListener('resize', onWindowResizeThree, { passive: true });
+            }
+        });
+
+        // --- Lucide Icons initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        // --- Content Visibility for long pages (pure CSS builds) ---
+        // This is a pure CSS rule. No JS needed for content-visibility.
+        // It's applied in the main CSS block:
+        // .section-padding { content-visibility: auto; contain-intrinsic-size: auto 1200px; }
+        // Except for the hero section which should always render.
+
+    </script>
+</body>
+</html>
