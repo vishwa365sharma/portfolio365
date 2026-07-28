@@ -513,90 +513,48 @@
             margin-bottom: 1rem;
         }
 
-        /* Career Section */
-        .career-section {
+        /* Skills Section */
+        .skills-section {
             scroll-margin-top: var(--header-height);
         }
-        .career-section h2 {
+        .skills-section h2 {
             text-align: center;
             margin-bottom: 3rem;
         }
-        .career-tabs {
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .skill-category {
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .career-tab-btn {
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 0.75rem 1.5rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
-            min-height: 44px;
-        }
-        .career-tab-btn:hover {
-            border-color: var(--border-hover);
-            color: var(--text-primary);
-        }
-        .career-tab-btn.active {
-            background-color: var(--accent);
-            border-color: var(--accent);
-            color: var(--text-primary);
-        }
-
-        .career-tab-content {
-            display: none;
-            background-color: var(--bg-card);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            animation: fadeIn 0.5s ease-out;
-        }
-        .career-tab-content.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .job-title {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        .company-name {
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        .job-duration {
-            font-size: 0.9rem;
-            color: var(--text-tertiary);
-            margin-bottom: 1.5rem;
-        }
-        .job-responsibilities {
+        .skill-list {
             list-style: none;
-            padding-left: 0;
-            margin-top: 1rem;
+            padding: 0;
         }
-        .job-responsibilities li {
+        .skill-list li {
             margin-bottom: 0.8rem;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 0.75rem;
             color: var(--text-secondary);
         }
-        .job-responsibilities li .icon {
+        .skill-list li .icon {
             color: var(--accent);
-            flex-shrink: 0;
-            margin-top: 0.2rem;
+            font-size: 1.2rem;
         }
 
         /* Projects & Achievements Grid */
@@ -930,7 +888,7 @@
             <nav class="nav-links" aria-label="Main Navigation">
                 <a href="#hero" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#career" class="nav-link">Career</a>
+                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#achievements" class="nav-link">Achievements</a>
                 <a href="#contact" class="nav-link">Contact</a>
@@ -955,7 +913,7 @@
         <nav class="mobile-nav-links" aria-label="Mobile Navigation">
             <a href="#hero" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
-            <a href="#career" class="nav-link">Career</a>
+            <a href="#skills" class="nav-link">Skills</a>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#achievements" class="nav-link">Achievements</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -993,49 +951,49 @@
             </div>
         </section>
 
-        <!-- Career Section -->
-        <section id="career" class="career-section container section-padding">
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section container section-padding">
             <div class="reveal">
-                <span class="label">My Journey</span>
-                <h2>Where I've Built & Grown</h2>
+                <span class="label">My Expertise</span>
+                <h2>Skills & Technologies</h2>
             </div>
-            <div class="career-tabs reveal" data-delay="200">
-                <button class="career-tab-btn active" data-tab="companyA">Innovatech Solutions</button>
-                <button class="career-tab-btn" data-tab="companyB">Creative Digital Agency</button>
-                <button class="career-tab-btn" data-tab="companyC">Startup X</button>
-            </div>
-
-            <div id="companyA" class="career-tab-content active reveal" data-delay="300">
-                <p class="job-duration">Jan 2020 - Present</p>
-                <h3 class="job-title">Senior Frontend Architect</h3>
-                <p class="company-name">Innovatech Solutions</p>
-                <ul class="job-responsibilities">
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Led architectural design and implementation of scalable frontend systems for enterprise SaaS products.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Mentored a team of 8 developers, fostering best practices in React, TypeScript, and GraphQL.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Pioneered integration of WebGL for data visualization, improving user engagement by 25%.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Conducted performance audits, reducing initial load times by 40% across key applications.</li>
-                </ul>
-            </div>
-            <div id="companyB" class="career-tab-content reveal" data-delay="300">
-                <p class="job-duration">Jul 2015 - Dec 2019</p>
-                <h3 class="job-title">Lead UI/UX Developer</h3>
-                <p class="company-name">Creative Digital Agency</p>
-                <ul class="job-responsibilities">
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Managed end-to-end development of client websites and web applications, from concept to deployment.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Collaborated with design teams to translate wireframes and mockups into responsive, interactive UIs.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Implemented A/B testing strategies, leading to significant improvements in conversion rates for e-commerce clients.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Introduced modern animation libraries and accessibility standards into project workflows.</li>
-                </ul>
-            </div>
-            <div id="companyC" class="career-tab-content reveal" data-delay="300">
-                <p class="job-duration">Aug 2013 - Jun 2015</p>
-                <h3 class="job-title">Junior Frontend Developer</h3>
-                <p class="company-name">Startup X</p>
-                <ul class="job-responsibilities">
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Developed core UI components using HTML, CSS, and jQuery for an early-stage social platform.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Assisted in optimizing website performance and ensuring cross-browser compatibility.</li>
-                    <li><iconify-icon icon="lucide:check" class="icon"></iconify-icon> Participated in daily stand-ups and sprint planning, contributing to agile development cycles.</li>
-                </ul>
+            <div class="skills-grid reveal" data-delay="200" style="margin-top: 3rem;">
+                <div class="skill-category glassmorphic">
+                    <h3><iconify-icon icon="lucide:code-2" class="icon"></iconify-icon> Frontend</h3>
+                    <ul class="skill-list">
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> React / Next.js</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Vue.js / Nuxt.js</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Angular</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> React Native</li>
+                    </ul>
+                </div>
+                <div class="skill-category glassmorphic">
+                    <h3><iconify-icon icon="lucide:terminal" class="icon"></iconify-icon> Core</h3>
+                    <ul class="skill-list">
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> JavaScript (ES6+)</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> TypeScript</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> HTML5 & CSS3</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> SCSS / SASS</li>
+                    </ul>
+                </div>
+                <div class="skill-category glassmorphic">
+                    <h3><iconify-icon icon="lucide:box" class="icon"></iconify-icon> 3D & Animation</h3>
+                    <ul class="skill-list">
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> WebGL / WebGPU</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Three.js</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> GSAP</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Framer Motion</li>
+                    </ul>
+                </div>
+                <div class="skill-category glassmorphic">
+                    <h3><iconify-icon icon="lucide:pen-tool" class="icon"></iconify-icon> Design & Arch</h3>
+                    <ul class="skill-list">
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Figma / UI Design</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Tailwind CSS</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> GraphQL & REST</li>
+                        <li><iconify-icon icon="lucide:check-circle-2" class="icon"></iconify-icon> Web Performance</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -1428,21 +1386,6 @@
                 card.addEventListener('pointerleave', handleMouseLeave);
             });
         }
-
-        // --- Career Tabs Logic ---
-        const tabButtons = document.querySelectorAll('.career-tab-btn');
-        const tabContents = document.querySelectorAll('.career-tab-content');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-
-                button.classList.add('active');
-                const targetTabId = button.dataset.tab;
-                document.getElementById(targetTabId).classList.add('active');
-            });
-        });
 
         // --- Three.js Hero Background ---
         let scene, camera, renderer, particles, particleMaterial, mouseX = 0, mouseY = 0;
