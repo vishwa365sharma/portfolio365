@@ -490,11 +490,11 @@
             color: var(--text-secondary);
         }
 
-        /* Projects & Achievements Grid */
-        .projects-section, .achievements-section {
+        /* Projects Section */
+        .projects-section {
             scroll-margin-top: var(--header-height);
         }
-        .projects-section h2, .achievements-section h2 {
+        .projects-section h2 {
             text-align: center;
             margin-bottom: 3rem;
         }
@@ -758,7 +758,6 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
-                <a href="#achievements" class="nav-link">Achievements</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <div class="header-actions">
@@ -785,7 +784,6 @@
             <a href="#about" class="nav-link">About</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#projects" class="nav-link">Projects</a>
-            <a href="#achievements" class="nav-link">Achievements</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </aside>
@@ -813,23 +811,23 @@
         </section>
 
         <!-- About Section -->
-<section id="about" class="about-section container section-padding">
-    <div class="about-image-wrapper reveal">
-       <img src="DSC_1707.JPG" alt="Vishwa Sharma - Web Developer" class="about-image" loading="lazy">
-    </div>
-    <div class="about-content reveal" data-delay="200">
-        <span class="label">About Me</span>
-        <h2>BCA Graduate | Web Developer & Data Science Enthusiast</h2>
-        <p>I'm a passionate BCA graduate from Panipat, Haryana with a strong foundation in Web Development, Data Science, and Digital Marketing. I enjoy building responsive websites and turning data into meaningful insights.</p>
-        <p>I have hands-on experience with <strong>Python, SQL, HTML, CSS, JavaScript, React.js, and Power BI</strong>. I also specialize in E-Commerce listing, SEO, and Marketing Analytics to help businesses grow online.</p>
-        <p>Currently, I'm looking for opportunities where I can apply my technical skills and contribute to innovative projects in Web Development and Data Analysis.</p>
-        
-        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
-            <a href="#contact" class="btn">Hire Me</a>
-            <a href="#projects" class="btn btn-secondary">View Projects</a>
-        </div>
-    </div>
-</section>
+        <section id="about" class="about-section container section-padding">
+            <div class="about-image-wrapper reveal">
+               <img src="DSC_1707.JPG" alt="Vishwa Sharma - Web Developer" class="about-image" loading="lazy">
+            </div>
+            <div class="about-content reveal" data-delay="200">
+                <span class="label">About Me</span>
+                <h2>BCA Graduate | Web Developer & Data Science Enthusiast</h2>
+                <p>I'm a passionate BCA graduate from Panipat, Haryana with a strong foundation in Web Development, Data Science, and Digital Marketing. I enjoy building responsive websites and turning data into meaningful insights.</p>
+                <p>I have hands-on experience with <strong>Python, SQL, HTML, CSS, JavaScript, React.js, and Power BI</strong>. I also specialize in E-Commerce listing, SEO, and Marketing Analytics to help businesses grow online.</p>
+                <p>Currently, I'm looking for opportunities where I can apply my technical skills and contribute to innovative projects in Web Development and Data Analysis.</p>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <a href="#contact" class="btn">Hire Me</a>
+                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                </div>
+            </div>
+        </section>
 
         <!-- Skills Section -->
         <section id="skills" class="skills-section container section-padding">
@@ -877,75 +875,55 @@
         </section>
 
         <!-- Projects Section -->
-<section id="projects" class="projects-section container section-padding">
-    <div class="reveal">
-        <span class="label">My Creations</span>
-        <h2>Featured Projects</h2>
-    </div>
-    <div class="grid-3-col" style="margin-top: 3rem;">
-        
-        <!-- Project 1: Spam Detector -->
-        <article class="card reveal">
-            <div class="card-inner" data-tilt>
-                <div class="card-image-wrapper">
-                    <img src="spamdetector.png" alt="Spam Detector" class="card-image" loading="lazy">
-                </div>
-                <div class="card-content">
-                    <h3>Spam Message Detector</h3>
-                    <p>A Python-based ML project that detects whether a given message is Spam or Not Spam. 
-                    It helps in filtering emails and SMS using Machine Learning.</p>
-                    <div class="card-tags">
-                        <span class="card-tag">Python</span>
-                        <span class="card-tag">Scikit-learn</span>
-                        <span class="card-tag">Streamlit</span>
-                    </div>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.2rem;">
-                <a href="https://spamdetector365.streamlit.app/" target="_blank" class="btn">Live Demo</a>
-                    </div>
-            </div>
-        </article>
-
-        <!-- Project 2: Keep your old one or change -->
-        <article class="card reveal">
-            <div class="card-inner" data-tilt>
-                <div class="card-image-wrapper">
-                    <img src="iris_flower_classification.png" alt="Iris Flower Classification" class="card-image" loading="lazy">
-                </div>
-                <div class="card-content">
-                    <h3>Iris Flower Classification</h3>
-                    <p>A Machine Learning project that classifies iris flowers into 3 species based on petal and sepal measurements. 
-                    Built using classification algorithms with 97% accuracy.</p>
-                    <div class="card-tags">
-                        <span class="card-tag">Python</span>
-                        <span class="card-tag">Pandas</span>
-                        <span class="card-tag">Scikit-learn</span>
-                        <span class="card-tag">Matplotlib</span>
-                        <span class="card-tag">Streamlit</span>
-                    </div>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.2rem;">
-                        <a href="https://irisflowerclassification365.streamlit.app/" target="_blank" class="btn">Live Demo</a>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </div>
-</section>
-        
-        <!-- Achievements Section -->
-        <section id="achievements" class="achievements-section container section-padding">
+        <section id="projects" class="projects-section container section-padding">
             <div class="reveal">
-                <span class="label">Recognition</span>
-                <h2>Milestones & Highlights</h2>
+                <span class="label">My Creations</span>
+                <h2>Featured Projects</h2>
             </div>
             <div class="grid-3-col" style="margin-top: 3rem;">
+                
+                <!-- Project 1: Spam Detector -->
                 <article class="card reveal">
                     <div class="card-inner" data-tilt>
                         <div class="card-image-wrapper">
-                            <img src="https://picsum.photos/seed/award-trophy/800/500" alt="Achievement" class="card-image" loading="lazy">
+                            <img src="spamdetector.png" alt="Spam Detector" class="card-image" loading="lazy">
                         </div>
                         <div class="card-content">
-                            <h3>Academic Excellence</h3>
-                            <p>Successfully completed BCA degree with continuous focus on practical projects and new technologies.</p>
+                            <h3>Spam Message Detector</h3>
+                            <p>A Python-based ML project that detects whether a given message is Spam or Not Spam. 
+                            It helps in filtering emails and SMS using Machine Learning.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Python</span>
+                                <span class="card-tag">Scikit-learn</span>
+                                <span class="card-tag">Streamlit</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1.2rem;">
+                                <a href="https://spamdetector365.streamlit.app/" target="_blank" class="btn">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2: Keep your old one or change -->
+                <article class="card reveal">
+                    <div class="card-inner" data-tilt>
+                        <div class="card-image-wrapper">
+                            <img src="iris_flower_classification.png" alt="Iris Flower Classification" class="card-image" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Iris Flower Classification</h3>
+                            <p>A Machine Learning project that classifies iris flowers into 3 species based on petal and sepal measurements. 
+                            Built using classification algorithms with 97% accuracy.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Python</span>
+                                <span class="card-tag">Pandas</span>
+                                <span class="card-tag">Scikit-learn</span>
+                                <span class="card-tag">Matplotlib</span>
+                                <span class="card-tag">Streamlit</span>
+                            </div>
+                            <div style="display: flex; gap: 1rem; margin-top: 1.2rem;">
+                                <a href="https://irisflowerclassification365.streamlit.app/" target="_blank" class="btn">Live Demo</a>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -1033,7 +1011,7 @@
             }
             updateThemeIcon();
 
-            // Mobile Navigation Toggle (FIXED)
+            // Mobile Navigation Toggle
             const hamburgerBtn = document.getElementById('hamburger-menu');
             const mobileDrawer = document.getElementById('mobile-nav-drawer');
             const mobileOverlay = document.getElementById('mobile-nav-overlay');
