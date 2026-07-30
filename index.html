@@ -71,6 +71,7 @@
 
         html {
             scroll-behavior: smooth;
+            transform: translateZ(0); /* GPU acceleration for smooth scroll */
         }
 
         body {
@@ -183,8 +184,8 @@
 
         .glassmorphic {
             background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px); /* Optimized to 10px to reduce scroll lag */
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             border-radius: var(--radius);
         }
@@ -203,9 +204,9 @@
             filter: blur(0);
         }
 
-        /* Header */
+        /* Header (Smart Hide/Show on Scroll) */
         .header {
-            position: sticky;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -214,13 +215,18 @@
             align-items: center;
             z-index: 100;
             padding: 0 clamp(1rem, 5vw, 2rem);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
             background: transparent;
         }
+        
+        .header.hide {
+            transform: translateY(-100%);
+        }
+
         .header.scrolled {
             background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
         }
 
@@ -385,7 +391,8 @@
 
         /* Hero Section */
         .hero-section {
-            min-height: calc(100vh - var(--header-height));
+            min-height: 100vh;
+            padding-top: var(--header-height);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -906,7 +913,7 @@
                     </div>
                 </article>
 
-                <!-- Project 2: Keep your old one or change -->
+                <!-- Project 2: Iris Flower Classification -->
                 <article class="card reveal">
                     <div class="card-inner" data-tilt>
                         <div class="card-image-wrapper">
@@ -1037,14 +1044,25 @@
             if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileNav);
             mobileLinks.forEach(link => link.addEventListener('click', closeMobileNav));
 
-            // Header Scroll Effect
+            // Header Smart Scroll Logic (Hide on Down, Show on Up)
             const header = document.getElementById('site-header');
+            let lastScrollTop = 0;
+
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 10) {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > 10) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
+
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.classList.add('hide');
+                } else {
+                    header.classList.remove('hide');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             }, { passive: true });
 
             // Active Link Observer
