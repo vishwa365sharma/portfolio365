@@ -192,14 +192,10 @@
             border-radius: var(--radius);
         }
 
+        /* Completely removed reveal animations from the About section to prevent any delay */
         .reveal {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .reveal.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
 
         /* Header */
@@ -424,7 +420,7 @@
             margin-top: 1.5rem;
         }
 
-        /* About Section Fixes */
+        /* About Section (Instant Render Fix) */
         .about-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -832,10 +828,10 @@
 
         <!-- About Section -->
         <section id="about" class="about-section container section-padding">
-            <div class="about-image-wrapper reveal">
-               <img src="DSC_1707.JPG" alt="Vishwa Sharma - Data Science Enthusiast" class="about-image" loading="lazy">
+            <div class="about-image-wrapper">
+               <img src="DSC_1707.JPG" alt="Vishwa Sharma - Data Science Enthusiast" class="about-image" loading="eager">
             </div>
-            <div class="about-content reveal" data-delay="200">
+            <div class="about-content">
                 <span class="label">About Me</span>
                 <h2>BCA Graduate & Aspiring Data Science Professional</h2>
                 <p>I am a BCA graduate and a fresher who is interested in building a career in Data Science and Data Analytics. I enjoy working with data, finding useful information from it, and using data to understand problems and make better decisions.</p>
@@ -1054,7 +1050,7 @@
             }
 
             if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileNav);
-            if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeMobileNav);
+            if (mobileCloseBtn) mobileCloseBtn.addEventListerner('click', closeMobileNav);
             if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileNav);
             mobileLinks.forEach(link => link.addEventListener('click', closeMobileNav));
 
@@ -1098,8 +1094,8 @@
 
             sections.forEach(section => sectionObserver.observe(section));
 
-            // Scroll Reveal Animation (Optimized threshold for instant appearance)
-            const revealElements = document.querySelectorAll(".reveal");
+            // Scroll Reveal Animation (Excluding About Section)
+            const revealElements = document.querySelectorAll(".reveal:not(#about .reveal)");
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1107,7 +1103,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.05, rootMargin: '50px' });
+            }, { threshold: 0.1 });
 
             revealElements.forEach(el => revealObserver.observe(el));
 
