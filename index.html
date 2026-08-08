@@ -194,16 +194,12 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            filter: blur(4px);
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                        filter 0.6s ease;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .reveal.is-visible {
             opacity: 1;
             transform: translateY(0);
-            filter: blur(0);
         }
 
         /* Header */
@@ -428,7 +424,7 @@
             margin-top: 1.5rem;
         }
 
-        /* About Section */
+        /* About Section Fixes */
         .about-section {
             display: grid;
             grid-template-columns: 1fr;
@@ -438,14 +434,14 @@
         }
         .about-image-wrapper {
             position: relative;
-            padding-bottom: 55%;
+            width: 100%;
+            max-width: 380px;
+            height: 420px;
             border-radius: var(--radius-lg);
             overflow: hidden;
             background-color: var(--bg-card);
             border: 1px solid var(--border);
-            max-width: 400px;
             margin: 0 auto;
-            width: 100%;
         }
         .about-image {
             position: absolute;
@@ -766,6 +762,7 @@
             .about-image-wrapper {
                 order: 1;
                 max-width: 280px;
+                height: 320px;
             }
         }
     </style>
@@ -1101,7 +1098,7 @@
 
             sections.forEach(section => sectionObserver.observe(section));
 
-            // Scroll Reveal Animation
+            // Scroll Reveal Animation (Optimized threshold for instant appearance)
             const revealElements = document.querySelectorAll(".reveal");
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -1110,7 +1107,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.05, rootMargin: '50px' });
 
             revealElements.forEach(el => revealObserver.observe(el));
 
